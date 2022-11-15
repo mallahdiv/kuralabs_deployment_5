@@ -31,9 +31,7 @@ pipeline{
     stage ('create container') {
       agent{label 'DockerAgent'}
       steps {
-        script {
-            app = docker.build("mallahdiv/url-shortner")
-        }
+        sh 'docker build -t deployment:version1 .'
       }
     }
     stage('Push to Dockerhub') {
