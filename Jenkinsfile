@@ -35,19 +35,7 @@ pipeline{
         sh 'docker build -t deployment:version1 .'
       }
     }
-    stage('Push to Dockerhub') {
-     agent{label 'DockerAgent'}
-     steps {
-        script {
-            docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Login') {            
-            app.push("${env.BUILD_NUMBER}")            
-            app.push("latest")
-            }
-        }
-     }
-    }
     
-    }
    }
      stage('Init') {
        steps {
