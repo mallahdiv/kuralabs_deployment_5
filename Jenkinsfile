@@ -47,14 +47,7 @@ pipeline {
         }
      }
     }
-    stage('create container') {
-       steps {
-        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('intTerraform') {
-                              sh 'terraform init' 
-                            }
-         }
+    
     }
    }
      stage('Init') {
