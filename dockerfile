@@ -7,4 +7,4 @@ WORKDIR kuralabs_deployment_3/
 RUN pip install -r requirements.txt 
 RUN pip install gunicorn
 EXPOSE 8000 
-ENTRYPOINT ["python3 -m gunicorn -w 4 application:app -b 0.0.0.0"]
+ENTRYPOINT ["python3", "-m", "gunicorn", "-w", "4", "application:app", "-b", "0.0.0.0"]
