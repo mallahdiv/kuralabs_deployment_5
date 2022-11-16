@@ -29,12 +29,14 @@ pipeline{
        
       }
     }
-    stage ('create container') {
-      agent{label 'DockerAgent'}
-      steps {
-        sh 'docker build -t deployment:version1 .'
-      }
-    }
+    stage ('Image Build/Push') {
+       agent {label 'DockerAgent'}
+       steps {
+         sh '''#!/bin/bash
+         docker build -t mallahdiv/url-shortener "https://raw.githubusercontent.com/mallahdiv/kuralabs_deployment_5/main/dockerfile" 
+         docker push mallahdiv/url-shortener
+         '''
+       }
     
    }
      stage('Init') {
