@@ -31,14 +31,13 @@ pipeline {
     stage ('Image Build/Push') {
        agent {label 'DockerAgent'}
        steps {
-    withCredentials(string(credentialsId: 'DOCKERHUB', variable: 'dockerhub'){
+        withCredentials(string(credentialsId: 'DOCKERHUB', variable: 'dockerhub')){
          sh '''#!/bin/bash
          docker build -t mallahdiv/url-shortener "https://raw.githubusercontent.com/mallahdiv/kuralabs_deployment_5/main/dockerfile"
          docker login --username-${dockerhub} 
          docker push mallahdiv/url-shortener
          '''
         }
-    
       }
     } 
         
