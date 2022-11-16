@@ -1,6 +1,5 @@
-pipeline{
-  agent any 
-  environment {DOCKERHUB_CREDENTIALS=credentials('Dockerhub')}
+pipeline {
+  agent any
    stages {
     stage ('Build') {
       steps {
@@ -39,7 +38,10 @@ pipeline{
        }
     
    }
+    
+        
      stage('Init') {
+       agent {label 'Terra Agent'}
        steps {
         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
@@ -50,6 +52,7 @@ pipeline{
     }
    }
       stage('Plan') {
+       agent {label 'Terra Agent'}
        steps {
         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
@@ -60,6 +63,7 @@ pipeline{
     }
    }
       stage('Apply') {
+       agent {label 'Terra Agent'}
        steps {
         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
@@ -68,5 +72,6 @@ pipeline{
                             }
          }
     }
+   
    }
-  
+}
