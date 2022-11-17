@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   [
   {
       "name": "url-container",
-      "image": "mallahdiv/url-shortner",
+      "image": "mallahdiv/url-shortener",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
