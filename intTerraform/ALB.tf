@@ -1,6 +1,6 @@
 resource "aws_lb_target_group" "url-app" {
   name        = "url-app"
-  port        = 8000
+  port        = 5000
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = aws_vpc.app_vpc.id
